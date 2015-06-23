@@ -40,6 +40,6 @@ var ContactsView = Backbone.View.extend({
 $(function(){
 	var model_1 = new Contact({title:'Mr', fist_name:'dev', last_name:'lim', contact_num:'0111', email:'dummy@none'});
 	var model_2 = new Contact({title:'Mr', fist_name:'John', last_name:'Doey', contact_num:'0111', email:'dummy@none'});
-	var colection = new Contacts([model_1, model_2]);
+	var collection = new Contacts([model_1, model_2]);
 	$('#appContainer').append(collection.render().el);
 });
