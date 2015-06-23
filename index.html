@@ -1,7 +1,8 @@
 <!doctype>
 <html>
 	<head>	
-		<link rel="stylesheet" href="public/css/bootstrap.min.css">
+		<link rel="stylesheet" href="lib/css/bootstrap.min.css">
+		<link rel="stylesheet" href="public/css/style.css">
 	</head>
 	<body>
 		<div id="appContainer" class="container">
@@ -10,20 +11,22 @@
 
 		<!-- -->
 			<script type="text/template" id="ContactView">
-				<div class="panel panel-default">
-				  <div class="panel-body">
-				  	<div>Name    : <%= title %>. <%= first_name %> <%= last_name %></div>
-				  	<div>Contact : <%= contact_num %></div>
-				  	<div>Email   : <%= email %></div>
-				  </div>
+				<div class="col-md-3">
+					<div class="panel panel-default">
+					  <div class="panel-body">
+					  	<div>Name    : <%= title %>. <%= first_name %> <%= last_name %></div>
+					  	<div>Contact : <%= contact_num %></div>
+					  	<div>Email   : <%= email %></div>
+					  </div>
+					</div>
 				</div>
 			</script>
 		<!-- -->
 
-		<script src="lib/js/jquery.js"></script>
+		<script src="lib/js/jquery.min.js"></script>
 		<script src="lib/js/underscore-min.js"></script>
 		<script src="lib/js/backbone-min.js"></script>
-		<script src="lib/js/bootstrap-min.js"></script>
+		<script src="lib/js/bootstrap.min.js"></script>
 		<script src="public/js/app.js"></script>
 	</body>
 </html>
