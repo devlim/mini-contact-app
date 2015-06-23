@@ -37,9 +37,27 @@ var ContactsView = Backbone.View.extend({
 	}
 });
 
+var AppRoute = Backbone.Router.extend({
+	routes: {
+		'': 'homeRoute',
+		'/create': 'newContactRoute'
+	},
+	homeRoute: function(e){
+
+		console.log("Y");
+	},
+	newContactRoute: function(e){
+		console.log("N");
+	}
+});
+
 $(function(){
-	var model_1 = new Contact({title:'Mr', fist_name:'dev', last_name:'lim', contact_num:'0111', email:'dummy@none'});
+	/*var model_1 = new Contact({title:'Mr', fist_name:'dev', last_name:'lim', contact_num:'0111', email:'dummy@none'});
 	var model_2 = new Contact({title:'Mr', fist_name:'John', last_name:'Doey', contact_num:'0111', email:'dummy@none'});
 	var collection = new Contacts([model_1, model_2]);
-	$('#appContainer').append(collection.render().el);
+	var collectionview = new ContactsView({collection:collection});
+	$('#appContainer').append(collectionview.render().el);*/
+
+	var app_route = new AppRoute();
+	Backbone.history.start();
 });

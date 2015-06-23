@@ -6,7 +6,10 @@
 	</head>
 	<body>
 		<div id="appContainer" class="container">
-			
+			<ul class="nav nav-tabs">
+			  <li role="presentation" class="active"><a href="/">Home</a></li>
+			  <li role="presentation"><a href="/create">Create new contact</a></li>
+			</ul>
 		</div>
 
 		<!-- -->
@@ -17,6 +20,20 @@
 					  	<div>Name    : <%= title %>. <%= first_name %> <%= last_name %></div>
 					  	<div>Contact : <%= contact_num %></div>
 					  	<div>Email   : <%= email %></div>
+					  </div>
+					</div>
+				</div>
+			</script>
+
+			<script type="text/template" id="newContact">
+				<div class="col-md-4">
+					<div class="panel panel-default">
+					  <div class="panel-body">
+					  	<div>Title       : <input type="text" id="title"></div>
+					  	<div>First Name  : <input type="text" id="first_name"></div>
+					  	<div>Last Name   : <input type="text" id="last_name"></div>
+					  	<div>Contact Num : <input type="text" id="contact_num"></div>
+					  	<div>Email       : <input type="text" id="email"></div>
 					  </div>
 					</div>
 				</div>
