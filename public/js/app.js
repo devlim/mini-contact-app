@@ -1,4 +1,4 @@
-var Contant = Backbone.Model.extend({
+var Contact = Backbone.Model.extend({
 	defaults:{
 		title: '',
 		first_name: '',
@@ -12,7 +12,7 @@ var Contants = Backbone.Collection.extend({
 	model: Contant;
 });
 
-var CotantView = Backbone.View.extend({
+var ContactView = Backbone.View.extend({
 	initialize: function(){
 		var template;
 	}
