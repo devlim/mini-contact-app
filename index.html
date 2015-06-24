@@ -7,9 +7,11 @@
 	<body>
 		<div id="appContainer" class="container">
 			<ul class="nav nav-tabs">
-			  <li role="presentation" class="active"><a href="/">Home</a></li>
-			  <li role="presentation"><a href="/create">Create new contact</a></li>
+			  <li role="presentation" class="active"><a href="#">Home</a></li>
+			  <li role="presentation"><a href="#create">Create new contact</a></li>
 			</ul>
+			<div id="contentContainer">
+			</div>
 		</div>
 
 		<!-- -->
@@ -26,7 +28,7 @@
 			</script>
 
 			<script type="text/template" id="newContact">
-				<div class="col-md-4">
+				<div class="col-md-12">
 					<div class="panel panel-default">
 					  <div class="panel-body">
 					  	<div>Title       : <input type="text" id="title"></div>
@@ -34,6 +36,7 @@
 					  	<div>Last Name   : <input type="text" id="last_name"></div>
 					  	<div>Contact Num : <input type="text" id="contact_num"></div>
 					  	<div>Email       : <input type="text" id="email"></div>
+					  	<div><input type="submit" id="savenewcontact"></div>
 					  </div>
 					</div>
 				</div>

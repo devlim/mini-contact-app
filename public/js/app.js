@@ -37,17 +37,40 @@ var ContactsView = Backbone.View.extend({
 	}
 });
 
+var NewContactView = Backbone.View.extend({
+	tagName:'section',
+	className: 'row',
+	initialize: function(){
+		this.template = _.template($('#newContact').html());
+	},
+	events:{
+		'click #savenewcontact': 'saveNewContact',
+	},
+	saveNewContact: function(){
+		console.log($('#title').val());
+	}
+	,
+	render: function(){
+		 $(this.el).html(this.template());
+		 return this;
+	}
+});
+
 var AppRoute = Backbone.Router.extend({
 	routes: {
 		'': 'homeRoute',
-		'/create': 'newContactRoute'
+		'create': 'newContactRoute'
 	},
 	homeRoute: function(e){
-
-		console.log("Y");
+		var model_1 = new Contact({title:'Mr', fist_name:'dev', last_name:'lim', contact_num:'0111', email:'dummy@none'});
+		var model_2 = new Contact({title:'Mr', fist_name:'John', last_name:'Doey', contact_num:'0111', email:'dummy@none'});
+		var collection = new Contacts([model_1, model_2]);
+		var collectionview = new ContactsView({collection:collection});
+		$('#contentContainer').empty().append(collectionview.render().el);
 	},
 	newContactRoute: function(e){
-		console.log("N");
+		var view = new NewContactView();
+		$('#contentContainer').empty().append(view.render().el);		
 	}
 });
 
