@@ -5,6 +5,11 @@ var Contact = Backbone.Model.extend({
 		last_name: '',
 		contact_num: '',
 		email: '',
+	},
+	validate: function(attrs, options){
+		if(attrs.title == ''){
+			return "cannot be empty";
+		}
 	}
 });
 
@@ -27,8 +32,8 @@ var ContactsView = Backbone.View.extend({
 	tagName:'section',
 	className: 'row',
 	render: function(){
-		var thisEl = $(this.el)
-		this.collection.each(function(m){
+		var thisEl = $(this.el);
+		collection.each(function(m){
 			var view = new ContactView({model:m});
 			thisEl.append(view.render().el);
 		});
@@ -47,7 +52,23 @@ var NewContactView = Backbone.View.extend({
 		'click #savenewcontact': 'saveNewContact',
 	},
 	saveNewContact: function(){
-		console.log($('#title').val());
+		var contact = new Contact();
+		contact.set({
+			title: $('#title').val(),
+			first_name: $('#first_name').val(),
+			last_name: $('#last_name').val(),
+			contact_num: $('#contact_num').val(),
+			email: $('#email').val()
+		}, {validate: true});
+
+		contact.on('invalid', function(model, error){
+			alert(model.get('title') + " " + error);
+		});
+
+		window.collection.add(contact);
+
+		Backbone.history.navigate('', {trigger:true})
+
 	}
 	,
 	render: function(){
@@ -62,25 +83,20 @@ var AppRoute = Backbone.Router.extend({
 		'create': 'newContactRoute'
 	},
 	homeRoute: function(e){
-		var model_1 = new Contact({title:'Mr', fist_name:'dev', last_name:'lim', contact_num:'0111', email:'dummy@none'});
-		var model_2 = new Contact({title:'Mr', fist_name:'John', last_name:'Doey', contact_num:'0111', email:'dummy@none'});
-		var collection = new Contacts([model_1, model_2]);
-		var collectionview = new ContactsView({collection:collection});
+		var collectionview = new ContactsView({collection: this.collection});	
 		$('#contentContainer').empty().append(collectionview.render().el);
 	},
 	newContactRoute: function(e){
-		var view = new NewContactView();
+		var view = new NewContactView({collection:this.collection});
 		$('#contentContainer').empty().append(view.render().el);		
 	}
 });
 
 $(function(){
-	/*var model_1 = new Contact({title:'Mr', fist_name:'dev', last_name:'lim', contact_num:'0111', email:'dummy@none'});
-	var model_2 = new Contact({title:'Mr', fist_name:'John', last_name:'Doey', contact_num:'0111', email:'dummy@none'});
-	var collection = new Contacts([model_1, model_2]);
-	var collectionview = new ContactsView({collection:collection});
-	$('#appContainer').append(collectionview.render().el);*/
-
-	var app_route = new AppRoute();
+	window.model_1 = new Contact({title:'Mr', fist_name:'dev', last_name:'lim', contact_num:'0111', email:'dummy@none'});
+	window.model_2 = new Contact({title:'Mr', fist_name:'John', last_name:'Doey', contact_num:'0111', email:'dummy@none'});
+	window.collection = new Contacts([model_1, model_2]);
+	//console.log(collection);
+	window.app_route = new AppRoute();
 	Backbone.history.start();
 });
