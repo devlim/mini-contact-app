@@ -21,10 +21,18 @@ var ContactView = Backbone.View.extend({
 	initialize: function(){
 		this.template = _.template($('#ContactView').html());
 	},
+	events:{
+		'click .delete': 'delete'
+	},
 	render: function(){
 		var renderContent = this.template(this.model.toJSON());
 		$(this.el).html(renderContent);
 		return this;
+	},
+	delete: function(){
+		this.model.destroy();
+		Backbone.history.navigate('create',{trigger:true});
+		Backbone.history.navigate('',{trigger:true});
 	}
 });
 
